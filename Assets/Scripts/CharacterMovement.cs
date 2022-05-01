@@ -25,7 +25,6 @@ public class CharacterMovement : MonoBehaviour
 
     private void Start()
     {
-        _animState = AnimState.Idle;
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _sprite = GetComponentInChildren<SpriteRenderer>();

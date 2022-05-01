@@ -10,14 +10,21 @@ public class CharacterMovement : MonoBehaviour
     private Animator _animator;
     private SpriteRenderer _sprite;
 
+    private AnimState _animState
+    {
+        get { return (AnimState)_animator.GetInteger("State"); }
+        set { _animator.SetInteger("State", (int)value); }
+    }
+
 
     public void Move(Vector2 direction)
     {
-        _rb.velocity = new Vector2(_speed * direction.x, _speed * direction.y);
+        _rb.velocity = _speed * direction;
     }
 
     private void Start()
     {
+        _animState = AnimState.Idle;
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _sprite = GetComponentInChildren<SpriteRenderer>();
@@ -33,12 +40,12 @@ public class CharacterMovement : MonoBehaviour
         {
             case (0.0f, 0.0f):
                 {
-                    // Idle
+                    _animState = AnimState.Idle;
                     break;
                 }
             case (0.0f, -1.0f):
                 {
-                    // Down
+                    _animState = AnimState.WalkDown;
                     break;
                 }
             case (0.0f, 1.0f):
@@ -62,5 +69,12 @@ public class CharacterMovement : MonoBehaviour
                     break;
                 }
         }
+    }
+
+    public enum AnimState
+    {
+        Idle = 0,
+        WalkUp = 1,
+        WalkDown = 2
     }
 }

@@ -3,10 +3,10 @@ using System;
 
 public class DesktopInputController : MonoBehaviour, IInputController
 {
-    private CharacterMovement _playerMovement;
+    private CharacterMovement _characterMovement;
     private Vector2 _movementDirection;
 
-    public CharacterMovement PlayerMovement { set => _playerMovement = value; }
+    public CharacterMovement CharacterMovement { set => _characterMovement = value; }
     
 
     private void Start()
@@ -14,10 +14,8 @@ public class DesktopInputController : MonoBehaviour, IInputController
         _movementDirection = Vector2.zero; 
     }
 
-    
-
     private void Update()
     {
-        _playerMovement.Move(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
+        _characterMovement.Move(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
     }
 }

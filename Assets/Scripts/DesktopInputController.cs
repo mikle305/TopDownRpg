@@ -11,17 +11,12 @@ public class DesktopInputController : MonoBehaviour, IInputController
 
     private void Start()
     {
-        _movementDirection = Vector2.zero;
+        _movementDirection = Vector2.zero; 
     }
 
-    // After Start()
-    private void Awake()
-    {
-        if (_playerMovement is null)
-            throw new NullReferenceException("Player Movement hasn't been initialized");
-    }
+    
 
-    private void FixedUpdate()
+    private void Update()
     {
         _playerMovement.Move(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
     }

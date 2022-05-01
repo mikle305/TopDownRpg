@@ -13,7 +13,6 @@ public class CharacterMovement : MonoBehaviour
 
     public void Move(Vector2 direction)
     {
-        ActionOnDirection(direction.x, direction.y);
         _rb.velocity = new Vector2(_speed * direction.x, _speed * direction.y);
     }
 

@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IInputController
 {
-    public CharacterMovement PlayerMovement { set; }
+    public CharacterMovement CharacterMovement { set; }
 }

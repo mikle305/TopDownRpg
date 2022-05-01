@@ -23,7 +23,7 @@ public class ProjectManager : MonoBehaviour
             throw new Exception("This build type doesn't support");
             // _inputController = gameObject.AddComponent<MobileInputController>();
         }
-        _inputController.PlayerMovement = _characterMovement;
+        _inputController.CharacterMovement = _characterMovement;
     }
 
     public enum Build

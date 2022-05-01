@@ -9,26 +9,28 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody2D _rb;
     private Animator _animator;
     private SpriteRenderer _sprite;
+
     private AnimState _animState
     {
         get { return (AnimState)_animator.GetInteger("State"); }
         set { _animator.SetInteger("State", (int)value); }
     }
 
+
     public void Move(Vector2 direction)
     {
         ActionOnDirection(direction.x, direction.y);
         _rb.velocity = new Vector2(_speed * direction.x, _speed * direction.y);
-    }
+	}
 
     private void Start()
     {
+        _animState = AnimState.Idle;
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _sprite = GetComponentInChildren<SpriteRenderer>();
     }
    
-
     private void ActionOnDirection(float x, float y)
     {
         if (x < 0.0f)

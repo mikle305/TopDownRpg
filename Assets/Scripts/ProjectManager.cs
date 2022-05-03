@@ -25,7 +25,7 @@ public class ProjectManager : MonoBehaviour
         }
         _inputController.CharacterMovement = _characterMovement;
     }
-
+     
     public enum Build
     {
         Desktop,

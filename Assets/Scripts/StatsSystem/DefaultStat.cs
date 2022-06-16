@@ -1,32 +1,20 @@
-﻿ using System;
-using UnityEngine;
+﻿using System;
 
-public class DefaultStat: IDefaultStat
+public class DefaultStat: Stat
 {
-    private float _value;
+    public override event Action ValueChanged;
 
-    public event Action ValueChanged;
+    public override float Value { 
+        get => _value; 
+    }
 
-    public float Value { get => _value; }
-
-
-    public DefaultStat(float value)
+    public void SetValue(float value)
     {
         _value = value;
-    }
-
-    public void Increase(float value)
-    {
-        _value += value;
         ValueChanged?.Invoke();
     }
 
-    public void Decrease(float value)
+    public DefaultStat(float baseValue) : base(baseValue)
     {
-        if (_value - value <= 0)
-            _value = 0;
-        else
-            _value -= value;
-        ValueChanged?.Invoke();
     }
 }

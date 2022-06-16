@@ -6,30 +6,32 @@ public class CharacterMovement : MonoBehaviour
     private float _speed;
 
     private Rigidbody2D _rb;
-    private Animator _animator;
+    
     private SpriteRenderer _sprite;
 
-    private AnimState _animState
-    {
-        get { return (AnimState)_animator.GetInteger("State"); }
-        set { _animator.SetInteger("State", (int)value); }
-    }
+    private CharacterAnim _characterAnim;
 
 
     public void Move(Vector2 direction)
     {
-        ActionOnDirection(direction.x, direction.y);
-        _rb.velocity = new Vector2(_speed * direction.x, _speed * direction.y);
+        
+        AnimOnDirection(direction.x, direction.y);
+        float x = direction.x;
+        float y = direction.y;
+        if (Mathf.Abs(direction.x) > 0 && Mathf.Abs(direction.y) > 0)
+            x /= 2;
+            y /= 2;
+        _rb.velocity = new Vector2(_speed * x, _speed * y);
 	}
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
         _sprite = GetComponentInChildren<SpriteRenderer>();
+        _characterAnim = new CharacterAnim(GetComponent<Animator>(), CharacterAnim.AnimState.Idle);
     }
    
-    private void ActionOnDirection(float x, float y)
+    private void AnimOnDirection(float x, float y)
     {
         if (x < 0.0f)
             _sprite.flipX = true;
@@ -39,44 +41,34 @@ public class CharacterMovement : MonoBehaviour
         {
             case (0.0f, 0.0f):
                 {
-                    _animState = AnimState.Idle;
+                    _characterAnim.State = CharacterAnim.AnimState.Idle;
                     break;
                 }
             case (0.0f, -1.0f):
                 {
-                    _animState = AnimState.WalkDown;
+                    _characterAnim.State = CharacterAnim.AnimState.WalkDown;
                     break;
                 }
             case (0.0f, 1.0f):
                 {
-                    _animState = AnimState.WalkUp;
+                    _characterAnim.State = CharacterAnim.AnimState.WalkUp;
                     break;
                 }
             case (1.0f, 0.0f):
                 {
-                    _animState = AnimState.WalkSide;
+                    _characterAnim.State = CharacterAnim.AnimState.WalkSide;
                     break;
                 }
             case (1.0f, -1.0f):
                 {
-                    _animState = AnimState.WalkSideDown;
+                    _characterAnim.State = CharacterAnim.AnimState.WalkSideDown;
                     break;
                 }
             case (1.0f, 1.0f):
                 {
-                    _animState = AnimState.WalkSIdeUp;
+                    _characterAnim.State = CharacterAnim.AnimState.WalkSIdeUp;
                     break;
                 }
         }
-    }
-
-    public enum AnimState
-    {
-        Idle = 0, 
-        WalkSide = 1,
-        WalkDown = 2,
-        WalkUp = 3,
-        WalkSideDown = 4,
-        WalkSIdeUp = 5
     }
 }

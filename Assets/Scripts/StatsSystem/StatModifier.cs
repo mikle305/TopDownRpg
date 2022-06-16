@@ -17,10 +17,11 @@ public class StatModifier
         _value = value;
         _type = type;
     }
+}
 
-    public enum ModifierType
-    {
-        flat,
-        coefficient
-    }
+public enum ModifierType
+{
+    AdditionBefore,
+    Coefficient,
+    AdditionAfter
 }

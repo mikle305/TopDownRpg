@@ -2,20 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ModifiableStat: IModifiableStat
+public class ModifiableStat: Stat
 {
-    private float _value;
-
     private List<StatModifier> _modifiers;
 
-    public event Action ValueChanged;
+    public override event Action ValueChanged;
 
-    public float Value { get => CalculateModifiedValue(); }
+    public override float Value { get => CalculateModifiedValue(); }
 
 
-    public ModifiableStat(float value)
+    public ModifiableStat(float baseValue) : base(baseValue)
     {
-        _value = value;
         _modifiers = new List<StatModifier>();
     }
 
@@ -34,16 +31,27 @@ public class ModifiableStat: IModifiableStat
 
     private float CalculateModifiedValue()
     {
-        float modifiedValue = _value;
-        float totalCoefficient = 1;
+        float additionBefore = 0;
+        float additionAfter = 0;
+        float coefficient = 1;
         foreach (var modifier in _modifiers)
         {
-            if (modifier.Type == StatModifier.ModifierType.flat)
-                modifiedValue += modifier.Value;
-            else
-                totalCoefficient += modifier.Value;
+            switch (modifier.Type)
+            {
+                case ModifierType.AdditionBefore:
+                    additionBefore += modifier.Value;
+                    break;
+                case ModifierType.Coefficient:
+                    coefficient += modifier.Value;
+                    break;
+                case ModifierType.AdditionAfter:
+                    additionAfter += modifier.Value;
+                    break;
+                default:
+                    throw new Exception("Unhandled modifier type");
+            }
         }
-        modifiedValue *= totalCoefficient;
+        float modifiedValue = (_value + additionBefore) * coefficient + additionAfter;
         return MathF.Round(modifiedValue, 2);
     }
 }

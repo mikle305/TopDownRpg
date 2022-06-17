@@ -24,6 +24,7 @@ public class CharacterMovement : MonoBehaviour
         _rb.velocity = new Vector2(_speed * x, _speed * y);
 	}
 
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();

@@ -10,19 +10,12 @@ public abstract class Unit : MonoBehaviour
     protected DefaultStat _health;
     protected ModifiableStat _maxHealth;
 
-    public DefaultStat Health { get => _health; }
 
-    public ModifiableStat MaxHealth { get => _maxHealth; }
+    public DefaultStat Health { set => _health = value; }
 
-    protected virtual void Start()
-    {
-        _health = new DefaultStat(baseHealth);
-        _maxHealth = new ModifiableStat(baseMaxHealth);
-        if (_health.Value > _maxHealth.Value)
-            _health.SetValue(_maxHealth.Value);
-    }
+    public ModifiableStat MaxHealth { set => _maxHealth = value; }
 
-    public virtual void ApplyDamage(float damage)
+    public virtual void DecreaseHealth(float damage)
     {
         if (_health.Value - damage <= 0) 
         {
@@ -33,12 +26,19 @@ public abstract class Unit : MonoBehaviour
             _health.SetValue(_health.Value - damage);
     }
 
-    public virtual void ApplyHeal(float health)
+    public virtual void IncreaseHealth(float health)
     {
         if (_health.Value + health >= _maxHealth.Value)
             _health.SetValue(_maxHealth.Value);
         else
             _health.SetValue(_health.Value + health);
+    }
+
+
+    protected virtual void Start()
+    {
+        if (_health.Value > _maxHealth.Value)
+            _health.SetValue(_maxHealth.Value);
     }
 
     protected virtual void Die()

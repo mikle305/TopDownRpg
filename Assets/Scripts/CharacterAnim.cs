@@ -4,6 +4,7 @@ public class CharacterAnim
 {
     private Animator _animator;
 
+
     public AnimState State
     {
         private get => (AnimState)_animator.GetInteger("State"); 

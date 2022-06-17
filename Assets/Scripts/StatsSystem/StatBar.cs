@@ -13,14 +13,16 @@ public class StatBar : MonoBehaviour
 
     private Stat _statMax;
 
-    public Stat Stat { get => _stat; set => _stat = value; }
-
-    public Stat StatMax { get => _statMax; set => _statMax = value; }
-
     private void Start()
     {
         _slider = GetComponent<Slider>();
-        SetValue();
+    }
+
+    public void InitStats(Stat stat, Stat statMax)
+    {
+        _stat = stat;
+        _statMax = statMax;
+        ChangeFiller();
         _stat.ValueChanged += OnStatChanged;
         _statMax.ValueChanged += OnStatChanged;
     }
@@ -28,10 +30,10 @@ public class StatBar : MonoBehaviour
 
     private void OnStatChanged()
     {
-        SetValue();
+        ChangeFiller();
     }
 
-    private void SetValue()
+    private void ChangeFiller()
     {
         _slider.maxValue = _statMax.Value;
         _slider.value = _stat.Value;

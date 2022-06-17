@@ -2,16 +2,22 @@ using UnityEngine;
 
 public abstract class Unit : MonoBehaviour
 {
-    protected DefaultStat _health;
+    [SerializeField]
+    private float baseHealth;
+    [SerializeField]
+    private float baseMaxHealth;
 
+    protected DefaultStat _health;
     protected ModifiableStat _maxHealth;
 
     public DefaultStat Health { get => _health; }
 
     public ModifiableStat MaxHealth { get => _maxHealth; }
 
-    private void Start()
+    protected virtual void Start()
     {
+        _health = new DefaultStat(baseHealth);
+        _maxHealth = new ModifiableStat(baseMaxHealth);
         if (_health.Value > _maxHealth.Value)
             _health.SetValue(_maxHealth.Value);
     }

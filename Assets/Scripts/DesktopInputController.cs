@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 
 public class DesktopInputController : MonoBehaviour, IInputController
 {
@@ -7,7 +6,6 @@ public class DesktopInputController : MonoBehaviour, IInputController
     private Vector2 _movementDirection;
 
     public CharacterMovement CharacterMovement { set => _characterMovement = value; }
-    
 
     private void Start()
     {

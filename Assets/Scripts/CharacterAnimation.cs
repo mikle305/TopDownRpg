@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CharacterAnim
+public class CharacterAnimation
 {
     private Animator _animator;
 
@@ -11,7 +11,7 @@ public class CharacterAnim
         set => _animator.SetInteger("State", (int)value);
     }
 
-    public CharacterAnim(Animator animator, AnimState animState)
+    public CharacterAnimation(Animator animator, AnimState animState)
     {
         _animator = animator;
         State = animState;

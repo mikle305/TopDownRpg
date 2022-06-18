@@ -9,7 +9,7 @@ public class CharacterMovement : MonoBehaviour
     
     private SpriteRenderer _sprite;
 
-    private CharacterAnim _characterAnim;
+    private CharacterAnimation _characterAnim;
 
 
     public void Move(Vector2 direction)
@@ -29,7 +29,7 @@ public class CharacterMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _sprite = GetComponentInChildren<SpriteRenderer>();
-        _characterAnim = new CharacterAnim(GetComponent<Animator>(), CharacterAnim.AnimState.Idle);
+        _characterAnim = new CharacterAnimation(GetComponent<Animator>(), CharacterAnimation.AnimState.Idle);
     }
    
     private void AnimOnDirection(float x, float y)
@@ -42,32 +42,32 @@ public class CharacterMovement : MonoBehaviour
         {
             case (0.0f, 0.0f):
                 {
-                    _characterAnim.State = CharacterAnim.AnimState.Idle;
+                    _characterAnim.State = CharacterAnimation.AnimState.Idle;
                     break;
                 }
             case (0.0f, -1.0f):
                 {
-                    _characterAnim.State = CharacterAnim.AnimState.WalkDown;
+                    _characterAnim.State = CharacterAnimation.AnimState.WalkDown;
                     break;
                 }
             case (0.0f, 1.0f):
                 {
-                    _characterAnim.State = CharacterAnim.AnimState.WalkUp;
+                    _characterAnim.State = CharacterAnimation.AnimState.WalkUp;
                     break;
                 }
             case (1.0f, 0.0f):
                 {
-                    _characterAnim.State = CharacterAnim.AnimState.WalkSide;
+                    _characterAnim.State = CharacterAnimation.AnimState.WalkSide;
                     break;
                 }
             case (1.0f, -1.0f):
                 {
-                    _characterAnim.State = CharacterAnim.AnimState.WalkSideDown;
+                    _characterAnim.State = CharacterAnimation.AnimState.WalkSideDown;
                     break;
                 }
             case (1.0f, 1.0f):
                 {
-                    _characterAnim.State = CharacterAnim.AnimState.WalkSIdeUp;
+                    _characterAnim.State = CharacterAnimation.AnimState.WalkSIdeUp;
                     break;
                 }
         }

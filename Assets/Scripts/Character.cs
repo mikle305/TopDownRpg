@@ -9,15 +9,26 @@ public class Character : Unit
     private ModifiableStat _maxSatiety;
 
 
-    public ModifiableStat Damage { set => _damage = value; }
+    public virtual void InitSatiety(DefaultStat satiety, ModifiableStat maxSatiety)
+    {
+        _satiety = satiety;
+        _maxSatiety = maxSatiety;
+        if (_satiety.Value > _maxSatiety.Value)
+            _satiety.SetValue(_maxSatiety.Value);
+    }
 
-    public DefaultStat Stamina { set => _stamina = value; }
+    public virtual void InitStamina(DefaultStat stamina, ModifiableStat maxStamina)
+    {
+        _stamina = stamina;
+        _maxStamina = maxStamina;
+        if (_stamina.Value > _maxStamina.Value)
+            _stamina.SetValue(_maxStamina.Value);
+    }
 
-    public ModifiableStat MaxStamina { set => _maxStamina = value; }
-
-    public DefaultStat Satiety { set => _satiety = value; }
-
-    public ModifiableStat MaxSatiety { set => _maxSatiety = value; }
+    public virtual void InitDamage(ModifiableStat damage)
+    {
+        _damage = damage;
+    }
 
 
     protected override void Die()

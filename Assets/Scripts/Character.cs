@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class Character : Unit
 {
-    private ModifiableStat _damage;
     private DefaultStat _stamina;
     private ModifiableStat _maxStamina;
     private DefaultStat _satiety;
     private ModifiableStat _maxSatiety;
+    private ModifiableStat _speed;
 
 
-    public virtual void InitSatiety(DefaultStat satiety, ModifiableStat maxSatiety)
+    public void InitSatiety(DefaultStat satiety, ModifiableStat maxSatiety)
     {
         _satiety = satiety;
         _maxSatiety = maxSatiety;
@@ -17,7 +17,7 @@ public class Character : Unit
             _satiety.SetValue(_maxSatiety.Value);
     }
 
-    public virtual void InitStamina(DefaultStat stamina, ModifiableStat maxStamina)
+    public void InitStamina(DefaultStat stamina, ModifiableStat maxStamina)
     {
         _stamina = stamina;
         _maxStamina = maxStamina;
@@ -25,9 +25,9 @@ public class Character : Unit
             _stamina.SetValue(_maxStamina.Value);
     }
 
-    public virtual void InitDamage(ModifiableStat damage)
+    public void InitSpeed(ModifiableStat speed)
     {
-        _damage = damage;
+        _speed = speed;
     }
 
 

@@ -1,4 +1,9 @@
+using System;
+using UnityEngine;
+
 public interface IInputController
 {
-    public CharacterMovement CharacterMovement { set; }
+    public event Action<Vector2> DirectionCmdReceived;
+
+    public event Action<Vector2> ActionCmdReceived;
 }

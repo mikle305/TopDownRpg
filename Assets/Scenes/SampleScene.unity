@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 73289537}
   - component: {fileID: 73289538}
+  - component: {fileID: 73289539}
   m_Layer: 0
   m_Name: Dependencies
   m_TagString: Untagged
@@ -153,7 +154,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 584213319}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &73289538
 MonoBehaviour:
@@ -168,16 +169,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _character: {fileID: 976667741247298932}
+  _characterMovement: {fileID: 584208061}
   _healthBar: {fileID: 1518992564}
   _staminaBar: {fileID: 2124534829}
   _satietyBar: {fileID: 1103275259}
-  _baseHealth: 0
-  _baseMaxHealth: 0
-  _baseDamage: 0
-  _baseStamina: 0
-  _baseMaxStamina: 0
-  _baseSatiety: 0
-  _baseMaxSatiety: 0
+  _baseHealth: 3
+  _baseMaxHealth: 3
+  _baseStamina: 3
+  _baseMaxStamina: 3
+  _baseSatiety: 3
+  _baseMaxSatiety: 3
+  _baseSpeed: 3
+--- !u!114 &73289539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73289536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08de70b184573544aabd5982977cf2f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterMovement: {fileID: 584208061}
+  _characterAnimation: {fileID: 976667741247298935}
+  _characterCombat: {fileID: 976667741247298934}
+  _sprite: {fileID: 778180966}
 --- !u!1 &205823900
 GameObject:
   m_ObjectHideFlags: 0
@@ -13186,6 +13204,8 @@ GameObject:
   - component: {fileID: 584208062}
   - component: {fileID: 584208063}
   - component: {fileID: 584208061}
+  - component: {fileID: 976667741247298935}
+  - component: {fileID: 976667741247298934}
   - component: {fileID: 976667741247298932}
   m_Layer: 0
   m_Name: Character
@@ -13222,7 +13242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a645f79a818304542b1b4ee12d879b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
 --- !u!50 &584208062
 Rigidbody2D:
   serializedVersion: 4
@@ -13292,7 +13311,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1244057638}
   - {fileID: 73289537}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -13762,52 +13780,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1244057636
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1244057638}
-  - component: {fileID: 1244057637}
-  m_Layer: 0
-  m_Name: Project Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1244057637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244057636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 613912bf889c9aa46a5d491b759323c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _build: 0
-  _characterMovement: {fileID: 584208061}
---- !u!4 &1244057638
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244057636}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.300135, y: -4.401098, z: 0.6777344}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 584213319}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1277273486
 GameObject:
   m_ObjectHideFlags: 0
@@ -16355,8 +16327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c24917df8389743a7d1a8e188edee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 2
-  baseMaxHealth: 3
 --- !u!70 &976667741247298933
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -16373,6 +16343,30 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.14571948}
   m_Size: {x: 0.5, y: 0.5}
   m_Direction: 0
+--- !u!114 &976667741247298934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584208059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 390f174853f1d8641aca65d63773ed2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &976667741247298935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584208059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3efede2502e72374287b0a2bfad8f570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &4573726374086272041
 CanvasRenderer:
   m_ObjectHideFlags: 0

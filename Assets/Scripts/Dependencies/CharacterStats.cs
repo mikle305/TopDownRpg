@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Dependencies
+namespace  Dependencies
 {
     public class CharacterStats : MonoBehaviour
     {
         [SerializeField]
         private Character _character;
+
+        [SerializeField]
+        private CharacterMovement _characterMovement;
 
         [SerializeField]
         private StatBar _healthBar;
@@ -22,8 +25,6 @@ namespace Assets.Scripts.Dependencies
         [SerializeField]
         private float _baseMaxHealth;
         [SerializeField]
-        private float _baseDamage;
-        [SerializeField]
         private float _baseStamina;
         [SerializeField]
         private float _baseMaxStamina;
@@ -31,6 +32,8 @@ namespace Assets.Scripts.Dependencies
         private float _baseSatiety;
         [SerializeField]
         private float _baseMaxSatiety;
+        [SerializeField]
+        private float _baseSpeed;
 
         private DefaultStat _health;
         private ModifiableStat _maxHealth;
@@ -38,7 +41,7 @@ namespace Assets.Scripts.Dependencies
         private ModifiableStat _maxStamina;
         private DefaultStat _satiety;
         private ModifiableStat _maxSatiety;
-        private ModifiableStat _damage;
+        private ModifiableStat _speed;
 
 
         private void Start()
@@ -46,6 +49,7 @@ namespace Assets.Scripts.Dependencies
             InitStats();
             SetCharacterStats();
             SetStatBarsStats();
+            SetCharacterMovement();
         }
 
         private void InitStats()
@@ -56,7 +60,7 @@ namespace Assets.Scripts.Dependencies
             _maxStamina = new ModifiableStat(_baseMaxStamina);
             _satiety = new DefaultStat(_baseSatiety);
             _maxSatiety = new ModifiableStat(_baseMaxSatiety);
-            _damage = new ModifiableStat(_baseDamage);
+            _speed = new ModifiableStat(_baseSpeed);
         }
 
         private void SetCharacterStats()
@@ -64,7 +68,7 @@ namespace Assets.Scripts.Dependencies
             _character.InitHealth(_health, _maxHealth);
             _character.InitStamina(_stamina, _maxStamina);
             _character.InitSatiety(_satiety, _maxSatiety);
-            _character.InitDamage(_damage);
+            _character.InitSpeed(_speed);
         }
 
         private void SetStatBarsStats()
@@ -72,6 +76,11 @@ namespace Assets.Scripts.Dependencies
             _healthBar.InitStats(_health, _maxHealth);
             _staminaBar.InitStats(_stamina, _maxStamina);
             _satietyBar.InitStats(_satiety, _maxSatiety);
+        }
+
+        private void SetCharacterMovement()
+        {
+            _characterMovement.InitSpeed(_speed);
         }
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Unit : MonoBehaviour
+public abstract class UnitStats : MonoBehaviour, IHealth
 {
     protected DefaultStat _health;
     protected ModifiableStat _maxHealth;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Character : Unit
+public class CharacterStats : UnitStats
 {
     private DefaultStat _stamina;
     private ModifiableStat _maxStamina;

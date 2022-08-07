@@ -2,10 +2,10 @@
 
 namespace  Dependencies
 {
-    public class CharacterStats : MonoBehaviour
+    public class CharacterStatsMediator : MonoBehaviour
     {
         [SerializeField]
-        private Character _character;
+        private CharacterStats _characterStats;
 
         [SerializeField]
         private CharacterMovement _characterMovement;
@@ -65,10 +65,10 @@ namespace  Dependencies
 
         private void SetCharacterStats()
         {
-            _character.InitHealth(_health, _maxHealth);
-            _character.InitStamina(_stamina, _maxStamina);
-            _character.InitSatiety(_satiety, _maxSatiety);
-            _character.InitSpeed(_speed);
+            _characterStats.InitHealth(_health, _maxHealth);
+            _characterStats.InitStamina(_stamina, _maxStamina);
+            _characterStats.InitSatiety(_satiety, _maxSatiety);
+            _characterStats.InitSpeed(_speed);
         }
 
         private void SetStatBarsStats()

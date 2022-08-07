@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Dependencies
 {
-    public class Input: MonoBehaviour
+    public class InputMediator: MonoBehaviour
     {
         private IInputController _inputController;
         
@@ -21,8 +21,11 @@ namespace Dependencies
 
         private void Start()
         {
+
             #if UNITY_EDITOR || UNITY_STANDALONE
                 _inputController = gameObject.AddComponent<DesktopInputController>();
+            #else
+               Debug.Log("Input for this platform doesn't support");
             #endif
             _characterAnimation.Init(_sprite);
             _inputController.DirectionCmdReceived += _characterMovement.Move;

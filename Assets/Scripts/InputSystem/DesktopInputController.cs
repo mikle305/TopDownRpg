@@ -7,6 +7,7 @@ public class DesktopInputController : MonoBehaviour, IInputController
     public event Action<Vector2> DirectionCmdReceived;
 
     public event Action<Vector2> ActionCmdReceived;
+    
 
     private void Start()
     {

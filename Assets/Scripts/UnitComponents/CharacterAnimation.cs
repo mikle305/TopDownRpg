@@ -6,12 +6,7 @@ public class CharacterAnimation: MonoBehaviour
     private Animator _animator;
 
     private SpriteRenderer _sprite;
-
-    public void Init(SpriteRenderer sprite)
-    {
-        _sprite = sprite;
-    }
-
+    
     public void Animate(Vector2 direction)
     {
         if (direction.x < 0.0f)
@@ -55,6 +50,7 @@ public class CharacterAnimation: MonoBehaviour
 
     private void Start()
     {
+        _sprite = GetComponentInChildren<SpriteRenderer>();
         _animator = GetComponent<Animator>();
     }
 

@@ -4,36 +4,21 @@ namespace  Dependencies
 {
     public class CharacterStatsMediator : MonoBehaviour
     {
-        [SerializeField]
-        private CharacterStats _characterStats;
+        [Header("Stats dependencies")]
+        [SerializeField] private CharacterStats _characterStats;
+        [SerializeField] private CharacterMovement _characterMovement;
+        [SerializeField] private StatBar _healthBar;
+        [SerializeField] private StatBar _staminaBar;
+        [SerializeField] private StatBar _satietyBar;
 
-        [SerializeField]
-        private CharacterMovement _characterMovement;
-
-        [SerializeField]
-        private StatBar _healthBar;
-
-        [SerializeField]
-        private StatBar _staminaBar;
-
-        [SerializeField]
-        private StatBar _satietyBar;
-
-
-        [SerializeField]
-        private float _baseHealth;
-        [SerializeField]
-        private float _baseMaxHealth;
-        [SerializeField]
-        private float _baseStamina;
-        [SerializeField]
-        private float _baseMaxStamina;
-        [SerializeField]
-        private float _baseSatiety;
-        [SerializeField]
-        private float _baseMaxSatiety;
-        [SerializeField]
-        private float _baseSpeed;
+        [Header("Stats default values")]
+        [SerializeField] private float _baseHealth;
+        [SerializeField] private float _baseMaxHealth;
+        [SerializeField] private float _baseStamina;
+        [SerializeField] private float _baseMaxStamina;
+        [SerializeField] private float _baseSatiety;
+        [SerializeField] private float _baseMaxSatiety;
+        [SerializeField] private float _baseSpeed;
 
         private DefaultStat _health;
         private ModifiableStat _maxHealth;
@@ -48,7 +33,7 @@ namespace  Dependencies
         {
             InitStats();
             SetCharacterStats();
-            SetStatBarsStats();
+            SetStatBars();
             SetCharacterMovement();
         }
 
@@ -71,7 +56,7 @@ namespace  Dependencies
             _characterStats.InitSpeed(_speed);
         }
 
-        private void SetStatBarsStats()
+        private void SetStatBars()
         {
             _healthBar.InitStats(_health, _maxHealth);
             _staminaBar.InitStats(_stamina, _maxStamina);

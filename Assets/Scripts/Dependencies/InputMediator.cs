@@ -10,6 +10,9 @@ namespace Dependencies
         [SerializeField] private CharacterAnimation _characterAnimation;
         [SerializeField] private CharacterCombat _characterCombat;
 
+        [Header("Other")] 
+        [SerializeField] private string _menuSceneName;
+        
         private IInputController _inputController;
 
         private void Start()
@@ -23,6 +26,7 @@ namespace Dependencies
             _inputController.DirectionCmdReceived += _characterMovement.Move;
             _inputController.DirectionCmdReceived += _characterAnimation.Animate;
             _inputController.ActionCmdReceived += _characterCombat.Attack;
+            _inputController.EscapeCmdReceived += OnEscapeCmdReceived;
         }
 
         private void OnDestroy()
@@ -30,6 +34,12 @@ namespace Dependencies
             _inputController.DirectionCmdReceived -= _characterMovement.Move;
             _inputController.DirectionCmdReceived -= _characterAnimation.Animate;
             _inputController.ActionCmdReceived -= _characterCombat.Attack;
+            _inputController.EscapeCmdReceived -= OnEscapeCmdReceived;
+        }
+
+        private void OnEscapeCmdReceived()
+        {
+            SceneController.LoadScene(_menuSceneName);
         }
     }
 }

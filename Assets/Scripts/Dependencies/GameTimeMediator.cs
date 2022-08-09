@@ -1,16 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Dependencies
 {
     public class GameTimeMediator: MonoBehaviour
     {
-        [SerializeField] private GameTimeUpdater _gameTimeUpdater;
-        [SerializeField] private GameTimeText _gameTimeText;
+        [SerializeField] private GameTimeController _gameTimeController;
+        [SerializeField] private GameTimeView _gameTimeView;
 
         private void Start()
         {
-            _gameTimeUpdater.GameTimeUpdated += GameTime.OnGameTimeUpdated;
-            _gameTimeUpdater.GameTimeUpdated += _gameTimeText.OnGameTimeUpdated;
+            _gameTimeController.GameTimeUpdated += GameTime.OnGameTimeUpdated;
+            _gameTimeController.GameTimeUpdated += _gameTimeView.OnGameTimeUpdated;
+        }
+
+        private void OnDestroy()
+        {
+            _gameTimeController.GameTimeUpdated -= GameTime.OnGameTimeUpdated;
+            _gameTimeController.GameTimeUpdated -= _gameTimeView.OnGameTimeUpdated;
         }
     }
 }

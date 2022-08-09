@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class GameTimeUpdater: MonoBehaviour
+public class GameTimeController: MonoBehaviour
 {
     [Tooltip("Real seconds for update Game Time")]
     [SerializeField] private float _updateDuration;

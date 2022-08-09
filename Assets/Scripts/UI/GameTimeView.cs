@@ -1,14 +1,13 @@
 using UnityEngine;
 using TMPro;
 
-[RequireComponent(typeof(TMP_Text))]
-public class GameTimeText : MonoBehaviour
+public class GameTimeView : MonoBehaviour
 {
-    private TMP_Text _tmpText;
+    [Header("UI elements")]
+    [SerializeField] private TMP_Text _tmpText;
     
     void Start()
     {
-        _tmpText = GetComponent<TMP_Text>();
         UpdateText();
     }
 

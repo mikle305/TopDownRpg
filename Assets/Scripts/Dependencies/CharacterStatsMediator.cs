@@ -7,9 +7,9 @@ namespace  Dependencies
         [Header("Stats dependencies")]
         [SerializeField] private CharacterStats _characterStats;
         [SerializeField] private CharacterMovement _characterMovement;
-        [SerializeField] private StatBar _healthBar;
-        [SerializeField] private StatBar _staminaBar;
-        [SerializeField] private StatBar _satietyBar;
+        [SerializeField] private StatBarView _healthBar;
+        [SerializeField] private StatBarView _staminaBar;
+        [SerializeField] private StatBarView _satietyBar;
 
         [Header("Stats default values")]
         [SerializeField] private float _baseHealth;

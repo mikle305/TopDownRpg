@@ -9,7 +9,7 @@ namespace Dependencies
         [SerializeField] private CharacterMovement _characterMovement;
         [SerializeField] private CharacterAnimation _characterAnimation;
         [SerializeField] private CharacterCombat _characterCombat;
-        
+
         private IInputController _inputController;
 
         private void Start()
@@ -24,8 +24,12 @@ namespace Dependencies
             _inputController.DirectionCmdReceived += _characterAnimation.Animate;
             _inputController.ActionCmdReceived += _characterCombat.Attack;
         }
+
+        private void OnDestroy()
+        {
+            _inputController.DirectionCmdReceived -= _characterMovement.Move;
+            _inputController.DirectionCmdReceived -= _characterAnimation.Animate;
+            _inputController.ActionCmdReceived -= _characterCombat.Attack;
+        }
     }
 }
-
-
-

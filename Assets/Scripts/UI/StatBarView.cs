@@ -1,16 +1,14 @@
 using UnityEngine.UI;
 using UnityEngine;
 
-public class StatBar : MonoBehaviour
+public class StatBarView : MonoBehaviour
 {
+    [Header("UI elements")]
     [SerializeField] private Gradient _gradient;
-
     [SerializeField] private Image _fill;
-
-    private Slider _slider;
-
+    [SerializeField] private Slider _slider;
+    
     private Stat _stat;
-
     private Stat _statMax;
 
 
@@ -21,12 +19,6 @@ public class StatBar : MonoBehaviour
         ChangeFiller();
         _stat.ValueChanged += OnStatChanged;
         _statMax.ValueChanged += OnStatChanged;
-    }
-
-
-    private void Start()
-    {
-        _slider = GetComponent<Slider>();
     }
 
     private void OnStatChanged()
@@ -41,7 +33,7 @@ public class StatBar : MonoBehaviour
         _fill.color = _gradient.Evaluate(_slider.normalizedValue);
     }
 
-    ~StatBar()
+    private void OnDestroy()
     {
         _stat.ValueChanged -= OnStatChanged;
         _statMax.ValueChanged -= OnStatChanged;

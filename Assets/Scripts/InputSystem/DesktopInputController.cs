@@ -8,6 +8,8 @@ public class DesktopInputController : MonoBehaviour, IInputController
 
     public event Action<Vector2> ActionCmdReceived;
     
+    public event Action EscapeCmdReceived;
+
 
     private void Start()
     {
@@ -20,5 +22,7 @@ public class DesktopInputController : MonoBehaviour, IInputController
         DirectionCmdReceived?.Invoke(_direction);
         if (Input.GetButton("Fire1"))
             ActionCmdReceived?.Invoke(_direction);
+        if (Input.GetKeyDown(KeyCode.Escape))
+            EscapeCmdReceived?.Invoke();    
     }
 }

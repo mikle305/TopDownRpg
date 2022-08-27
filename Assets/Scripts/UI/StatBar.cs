@@ -1,6 +1,6 @@
 using UnityEngine.UI;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
+using DG.Tweening;
 
 public class StatBar : MonoBehaviour
 {
@@ -8,6 +8,7 @@ public class StatBar : MonoBehaviour
     [SerializeField] private Gradient _gradient;
     [SerializeField] private Image _fill;
     [SerializeField] private Slider _slider;
+    [SerializeField] private float _transitionDuration = 0.2f;
 
     private IStat _stat;
     private IStat _statMax;
@@ -23,7 +24,7 @@ public class StatBar : MonoBehaviour
     private void OnStat_ValueChanged(float oldValue, float newValue)
     {
         _slider.maxValue = _statMax.GetValue();
-        _slider.value = newValue;
+        _slider.DOValue(newValue, _transitionDuration);
         _fill.color = _gradient.Evaluate(_slider.normalizedValue);
     }
 

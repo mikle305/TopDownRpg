@@ -4,6 +4,6 @@
 
     public void IncreaseHealth(float value);
 
-    public void DecreaseHealth(float value);
+    public void DecreaseHealth(float health);
 
 }

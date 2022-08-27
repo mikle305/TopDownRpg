@@ -13,16 +13,16 @@ public class CharacterStats : UnitStats
     {
         _satiety = satiety;
         _maxSatiety = maxSatiety;
-        if (_satiety.Value > _maxSatiety.Value)
-            _satiety.SetValue(_maxSatiety.Value);
+        if (_satiety.Value > _maxSatiety.GetValue())
+            _satiety.Value = _maxSatiety.GetValue();
     }
 
     public void InitStamina(DefaultStat stamina, ModifiableStat maxStamina)
     {
         _stamina = stamina;
         _maxStamina = maxStamina;
-        if (_stamina.Value > _maxStamina.Value)
-            _stamina.SetValue(_maxStamina.Value);
+        if (_stamina.Value > _maxStamina.GetValue())
+            _stamina.Value = _maxStamina.GetValue();
     }
 
     public void InitSpeed(ModifiableStat speed)

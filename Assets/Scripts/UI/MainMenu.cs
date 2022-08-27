@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuView : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
     [Header("UI elements")]
     [SerializeField] private Button _button;

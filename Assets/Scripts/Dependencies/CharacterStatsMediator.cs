@@ -7,9 +7,9 @@ namespace  Dependencies
         [Header("Stats dependencies")]
         [SerializeField] private CharacterStats _characterStats;
         [SerializeField] private CharacterMovement _characterMovement;
-        [SerializeField] private StatBarView _healthBar;
-        [SerializeField] private StatBarView _staminaBar;
-        [SerializeField] private StatBarView _satietyBar;
+        [SerializeField] private StatBar _healthBar;
+        [SerializeField] private StatBar _staminaBar;
+        [SerializeField] private StatBar _satietyBar;
 
         [Header("Stats default values")]
         [SerializeField] private float _baseHealth;
@@ -31,41 +31,48 @@ namespace  Dependencies
 
         private void Start()
         {
-            InitStats();
-            SetCharacterStats();
-            SetStatBars();
-            SetCharacterMovement();
+            CreateStats();
+            SetInteractionWithComponents();
+            SetInteractionWithUI();
+            SetStatsValues();
         }
 
-        private void InitStats()
+        private void CreateStats()
         {
-            _health = new DefaultStat(_baseHealth);
-            _maxHealth = new ModifiableStat(_baseMaxHealth);
-            _stamina = new DefaultStat(_baseStamina);
-            _maxStamina = new ModifiableStat(_baseMaxStamina);
-            _satiety = new DefaultStat(_baseSatiety);
-            _maxSatiety = new ModifiableStat(_baseMaxSatiety);
-            _speed = new ModifiableStat(_baseSpeed);
+            _health = new DefaultStat();
+            _maxHealth = new ModifiableStat();
+            _stamina = new DefaultStat();
+            _maxStamina = new ModifiableStat();
+            _satiety = new DefaultStat();
+            _maxSatiety = new ModifiableStat();
+            _speed = new ModifiableStat();
         }
 
-        private void SetCharacterStats()
+        private void SetStatsValues()
+        {
+            _health.Value = _baseHealth;
+            _maxHealth.BaseValue = _baseMaxHealth;
+            _stamina.Value = _baseStamina;
+            _maxStamina.BaseValue = _baseMaxStamina;
+            _satiety.Value = _baseSatiety;
+            _maxSatiety.BaseValue = _baseMaxSatiety;
+            _speed.BaseValue = _baseSpeed;
+        }
+
+        private void SetInteractionWithComponents()
         {
             _characterStats.InitHealth(_health, _maxHealth);
             _characterStats.InitStamina(_stamina, _maxStamina);
             _characterStats.InitSatiety(_satiety, _maxSatiety);
             _characterStats.InitSpeed(_speed);
+            _characterMovement.InitSpeed(_speed);
         }
 
-        private void SetStatBars()
+        private void SetInteractionWithUI()
         {
             _healthBar.InitStats(_health, _maxHealth);
             _staminaBar.InitStats(_stamina, _maxStamina);
             _satietyBar.InitStats(_satiety, _maxSatiety);
-        }
-
-        private void SetCharacterMovement()
-        {
-            _characterMovement.InitSpeed(_speed);
         }
     }
 }

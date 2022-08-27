@@ -6,31 +6,31 @@ public abstract class UnitStats : MonoBehaviour, IHealth
     protected ModifiableStat _maxHealth;
 
 
-    public virtual void DecreaseHealth(float damage)
+    public virtual void DecreaseHealth(float health)
     {
-        if (_health.Value - damage <= 0) 
+        if (_health.Value - health <= 0) 
         {
-            _health.SetValue(0);
+            _health.Value = 0;
             Die();
         }  
         else
-            _health.SetValue(_health.Value - damage);
+            _health.Value -= health;
     }
 
     public virtual void IncreaseHealth(float health)
     {
-        if (_health.Value + health >= _maxHealth.Value)
-            _health.SetValue(_maxHealth.Value);
+        if (_health.Value + health >= _maxHealth.GetValue())
+            _health.Value = _maxHealth.GetValue();
         else
-            _health.SetValue(_health.Value + health);
+            _health.Value += health;
     }
 
     public virtual void InitHealth(DefaultStat health, ModifiableStat maxHealth)
     {
         _health = health;
         _maxHealth = maxHealth;
-        if (_health.Value > _maxHealth.Value)
-            _health.SetValue(_maxHealth.Value);
+        if (_health.Value > _maxHealth.GetValue())
+            _health.Value = _maxHealth.GetValue();
     }
 
 

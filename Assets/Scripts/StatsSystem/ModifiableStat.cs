@@ -1,16 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class ModifiableStat: Stat
+public class ModifiableStat: IStat
 {
-    private List<StatModifier> _modifiers;
+    private float _baseValue;
+    // Final value is using for cache.
+    private float _finalValue;
+    private readonly List<StatModifier> _modifiers;
+    
+    public event Action<float, float> ValueChanged;
 
-    public override event Action ValueChanged;
+    public float BaseValue
+    {
+        get => _baseValue;
+        set
+        {
+            _baseValue = value;
+            UpdateFinalValue();
+        }
+    }
 
-    public override float Value { get => CalculateModifiedValue(); }
-
-
-    public ModifiableStat(float baseValue) : base(baseValue)
+    public float GetValue()
+    {
+        return _finalValue;
+    }
+    
+    public ModifiableStat()
     {
         _modifiers = new List<StatModifier>();
     }
@@ -18,14 +33,21 @@ public class ModifiableStat: Stat
     public void AddModifier(StatModifier modifier)
     {
         _modifiers.Add(modifier);
-        ValueChanged?.Invoke();
+        UpdateFinalValue();
     }
 
     public bool RemoveModifier(StatModifier modifier)
     {
-        bool result = _modifiers.Remove(modifier);
-        ValueChanged?.Invoke();
+        var result = _modifiers.Remove(modifier);
+        UpdateFinalValue();
         return result;
+    }
+
+    private void UpdateFinalValue()
+    {
+        var oldValue = _finalValue;
+        _finalValue = CalculateModifiedValue();
+        ValueChanged?.Invoke(oldValue, _finalValue);
     }
 
     private float CalculateModifiedValue()
@@ -50,7 +72,7 @@ public class ModifiableStat: Stat
                     throw new Exception("Unhandled modifier type");
             }
         }
-        float modifiedValue = (_value + additionBefore) * coefficient + additionAfter;
+        float modifiedValue = (BaseValue + additionBefore) * coefficient + additionAfter;
         return MathF.Round(modifiedValue, 2);
     }
 }

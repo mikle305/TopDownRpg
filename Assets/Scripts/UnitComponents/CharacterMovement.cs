@@ -16,7 +16,7 @@ public class CharacterMovement : MonoBehaviour
             x /= 2;
             y /= 2;
         }
-        _rigidbody.velocity = new Vector2(_speed.Value * x, _speed.Value * y);
+        _rigidbody.velocity = new Vector2(_speed.GetValue() * x, _speed.GetValue() * y);
 	}
 
     public void InitSpeed(ModifiableStat speed)

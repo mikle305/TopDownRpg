@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-    private ModifiableStat _speed;
+    private IStat _speed;
 
     private Rigidbody2D _rigidbody;
 
@@ -19,7 +19,7 @@ public class CharacterMovement : MonoBehaviour
         _rigidbody.velocity = new Vector2(_speed.GetValue() * x, _speed.GetValue() * y);
 	}
 
-    public void InitSpeed(ModifiableStat speed)
+    public void InitSpeed(IStat speed)
     {
         _speed = speed;
     }

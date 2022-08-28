@@ -3,7 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class ColorHighlighter: MonoBehaviour
+public class Highlighter: MonoBehaviour
 {
     [SerializeField] private float _duration;
     [SerializeField] private Color _targetColor;

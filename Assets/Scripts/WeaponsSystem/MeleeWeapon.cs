@@ -3,13 +3,29 @@ using UnityEngine;
 
 namespace WeaponsSystem
 {
-    public class MeleeWeapon: IWeapon
+    public class MeleeWeapon: MonoBehaviour, IWeapon
     {
-        public bool IsReady { get; private set; }
+        private WeaponAnimation _weaponAnimation;
+
+        public Vector2 Direction { get; private set; }
         
-        public void Attack(Vector2 direction)
+        public bool IsReady { get; private set; }
+
+        public event Action AttackInvoked;
+
+        public void Attack()
         {
-            throw new NotImplementedException();
+            AttackInvoked?.Invoke();
+        }
+
+        public void OnDirectionChanged(Vector2 direction)
+        {
+            Direction = direction;
+        }
+
+        private void Start()
+        {
+            _weaponAnimation = gameObject.GetComponent<WeaponAnimation>();
         }
     }
 }

@@ -12,8 +12,12 @@ GameObject:
   - component: {fileID: 7999220145359221653}
   - component: {fileID: 2300479952741889985}
   - component: {fileID: 4705818707142262245}
+  - component: {fileID: 4048878302434812441}
+  - component: {fileID: 7986464513925595256}
   - component: {fileID: 892976328557518862}
+  - component: {fileID: -6788231968861252242}
   - component: {fileID: 4203792933434722364}
+  - component: {fileID: -809757427261855133}
   - component: {fileID: 5160290575074147377}
   m_Layer: 0
   m_Name: Tree
@@ -126,7 +130,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.125, y: 1.9375}
     newSize: {x: 1.125, y: 1.9375}
     adaptiveTilingThreshold: 0.5
@@ -135,14 +139,48 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: -0.33}
-      - {x: -0.15, y: -0.4}
-      - {x: -0.15, y: -0.54}
-      - {x: -0.25, y: -0.75}
-      - {x: 0, y: -0.9}
-      - {x: 0.25, y: -0.75}
-      - {x: 0.15, y: -0.54}
-      - {x: 0.15, y: -0.4}
+    - - {x: 0, y: 0.57}
+      - {x: -0.15, y: 0.5}
+      - {x: -0.15, y: 0.36}
+      - {x: -0.25, y: 0.15}
+      - {x: 0, y: 0}
+      - {x: 0.25, y: 0.15}
+      - {x: 0.15, y: 0.36}
+      - {x: 0.15, y: 0.5}
+  m_UseDelaunayMesh: 0
+--- !u!114 &4048878302434812441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8189136701380669553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecef142e0a464d719097c989bd5cb77a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destroyDuration: 0.5
+  _damageable: {fileID: -809757427261855133}
+  _shaker: {fileID: -6788231968861252242}
+  _spawner: {fileID: 4203792933434722364}
+  _treeFall: {fileID: 7986464513925595256}
+--- !u!114 &7986464513925595256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8189136701380669553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b9deb292344497485c70e800d7fa365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _duration: 2
+  _angle: 90
+  _minDeflection: -20
+  _maxDeflection: 10
 --- !u!114 &892976328557518862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +194,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _duration: 0.2
-  _targetColor: {r: 1, g: 0.66415095, b: 0.66415095, a: 1}
+  _targetColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
+--- !u!114 &-6788231968861252242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8189136701380669553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d6bfd962741447469cc98d421e47b5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _time: 1
+  _shakeStrength: {x: 0.1, y: 0.1}
 --- !u!114 &4203792933434722364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,10 +222,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 4366395035475136288, guid: 2730e9aa20b02374d8d392d52f084775, type: 3}
+  _isInParent: 1
   _minCount: 3
   _maxCount: 5
-  _minDeflection: {x: -0.5, y: 1}
-  _maxDeflection: {x: 0.5, y: 1}
+  _minDeflection: {x: -0.5, y: -0.2}
+  _maxDeflection: {x: 0.5, y: 0}
+--- !u!114 &-809757427261855133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8189136701380669553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13915f20639866d48867b3b4fb1ad7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 5
 --- !u!114 &5160290575074147377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,15 +289,15 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4203792933434722364}
-          m_TargetAssemblyTypeName: Spawner, Assembly-CSharp
-          m_MethodName: Spawn
-          m_Mode: 1
+        - m_Target: {fileID: -809757427261855133}
+          m_TargetAssemblyTypeName: Damageable, Assembly-CSharp
+          m_MethodName: Damage
+          m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 0
+            m_FloatArgument: 1
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2

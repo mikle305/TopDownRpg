@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class Damageable : MonoBehaviour
@@ -10,7 +9,6 @@ public class Damageable : MonoBehaviour
     
     public event Action<float> Damaged;
     public event Action Broken;
-    public event Action Destroyed;
 
     public void Damage(float value)
     {
@@ -27,18 +25,5 @@ public class Damageable : MonoBehaviour
             _isBroken = true;
             Broken?.Invoke();
         }
-    }
-
-    public void Destroy(float delay)
-    {
-        StartCoroutine(DestroyCoroutine(delay));
-    }
-
-    IEnumerator DestroyCoroutine(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        
-        Destroyed?.Invoke();
-        Destroy(gameObject);
     }
 }

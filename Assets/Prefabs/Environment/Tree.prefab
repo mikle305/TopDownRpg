@@ -160,11 +160,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecef142e0a464d719097c989bd5cb77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destroyDuration: 0.5
+  _destroyDelay: 0
   _damageable: {fileID: -809757427261855133}
   _shaker: {fileID: -6788231968861252242}
   _spawner: {fileID: 4203792933434722364}
-  _treeFall: {fileID: 7986464513925595256}
+  _treeFaller: {fileID: 7986464513925595256}
 --- !u!114 &7986464513925595256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,12 +221,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f79ea6c33241859562076ba4743346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 4366395035475136288, guid: 2730e9aa20b02374d8d392d52f084775, type: 3}
+  _prefab: {fileID: 4366395035475136288, guid: 58c2af58cd68a0841a2ff26b71a9f22f, type: 3}
   _isInParent: 1
   _minCount: 3
   _maxCount: 5
   _minDeflection: {x: -0.5, y: -0.2}
   _maxDeflection: {x: 0.5, y: 0}
+  _minDelay: 0.1
+  _maxDelay: 0.1
 --- !u!114 &-809757427261855133
 MonoBehaviour:
   m_ObjectHideFlags: 0

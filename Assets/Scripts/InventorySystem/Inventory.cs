@@ -6,40 +6,41 @@ namespace InventorySystem
 {
     public class Inventory: IInventory
     {
-        private List<Item> _items;
+        public List<IInventoryItem> Items { get; }
 
-        private int _capacity;
-
-        public List<Item> Items => _items;
-
-        public int Capacity => _capacity;
+        public int Capacity { get; set; }
+        
+        public bool IsFull { get; private set; }
 
         public Inventory(int capacity)
         {
-            _items = new List<Item>();
-            _capacity = capacity;
+            Items = new List<IInventoryItem>();
+            Capacity = capacity;
         }
         
-        public bool AddItem(Item item)
+        public bool TryAddItem(IInventoryItem item)
         {
-            if (_items.Count == _capacity)
-                return false;
-            _items.Add(item);
+            if (Items.Count >= Capacity)
+                return false; 
+            
+            Items.Add(item);
             return true;
         }
 
-        public bool AddItem(int itemId)
+        public bool TryAddItem(int itemId)
         {
+            //return Item.GetAll().FirstOrDefault(i => i.id = itemId);
             //Item item = ScriptableObject.CreateInstance<>()
             throw new NotImplementedException();
         }
 
-        public bool RemoveItem(int itemId)
+        public bool TryRemoveItem(int itemId)
         {
-            var item = _items.FirstOrDefault((i) => i.Id == itemId);
+            IInventoryItem item = Items.FirstOrDefault((i) => i.Item.Id == itemId);
             if (item == null)
                 return false;
-            return _items.Remove(item);
+            
+            return Items.Remove(item);
         }
     }
 }

@@ -1,11 +1,15 @@
-﻿namespace InventorySystem
+﻿using System;
+
+namespace InventorySystem
 {
     public interface IInventoryItem
     {
         public IItem Item { get; }
         
-        public int MaxCountInInventorySlot { get; }
+        public int MaxCount { get; }
         
-        public int CurrentCountInInventorySlot { get; }
+        public int Count { get; }
+        
+        public Type Type { get; }
     }
 }

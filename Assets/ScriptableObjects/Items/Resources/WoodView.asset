@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78386cb25b0f4137955d2fd5861069b5, type: 3}
+  m_Name: WoodView
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 4366395035475136288, guid: 2730e9aa20b02374d8d392d52f084775, type: 3}
+  _icon: {fileID: 8999237722193271028, guid: 2730e9aa20b02374d8d392d52f084775, type: 3}
